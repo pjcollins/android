@@ -20,6 +20,7 @@
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
   </PropertyGroup>
+  <Import Project="Mono.Android-Test.Shared.projitems" Label="Shared" Condition="Exists('Mono.Android-Test.Shared.projitems')" />
   <Import Project="..\..\..\Configuration.props" />
   <PropertyGroup>
     <TargetFrameworkVersion>$(AndroidFrameworkVersion)</TargetFrameworkVersion>

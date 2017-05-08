@@ -37,6 +37,7 @@ namespace Xamarin.Android.Tasks
 		public string[] MergedManifestDocuments { get; set; }
 
 		public bool Debug { get; set; }
+		public bool MultiDex { get; set; }
 		public string ApplicationName { get; set; }
 		public string PackageName { get; set; }
 		public string [] ManifestPlaceholders { get; set; }
@@ -68,6 +69,7 @@ namespace Xamarin.Android.Tasks
 			Log.LogDebugMessage ("GenerateJavaStubs Task");
 			Log.LogDebugMessage ("  ManifestTemplate: {0}", ManifestTemplate);
 			Log.LogDebugMessage ("  Debug: {0}", Debug);
+			Log.LogDebugMessage ("  MultiDex: {0}", MultiDex);
 			Log.LogDebugMessage ("  ApplicationName: {0}", ApplicationName);
 			Log.LogDebugMessage ("  PackageName: {0}", PackageName);
 			Log.LogDebugMessage ("  AndroidSdkDir: {0}", AndroidSdkDir);
@@ -222,6 +224,7 @@ namespace Xamarin.Android.Tasks
 			manifest.SdkDir = AndroidSdkDir;
 			manifest.SdkVersion = AndroidSdkPlatform;
 			manifest.Debug = Debug;
+			manifest.MultiDex = MultiDex;
 			manifest.NeedsInternet = NeedsInternet;
 
 			var additionalProviders = manifest.Merge (all_java_types, selectedWhitelistAssemblies, ApplicationJavaClass, EmbedAssemblies, BundledWearApplicationName, MergedManifestDocuments);
