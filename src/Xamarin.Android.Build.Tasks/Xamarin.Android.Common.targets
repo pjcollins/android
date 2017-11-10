@@ -1653,12 +1653,10 @@ because xbuild doesn't support framework reference assemblies.
     ResourceName="Seppuku.java"
     OutputPath="$(MonoAndroidIntermediate)android\src\mono\android\Seppuku.java"
     Condition="'$(AndroidIncludeDebugSymbols)' == 'True'" />
-
   <CopyResource
     ResourceName="IncrementalClassLoader.java"
     OutputPath="$(MonoAndroidIntermediate)android\src\mono\android\incrementaldeployment\IncrementalClassLoader.java"
     Condition="'$(AndroidEnableMultiDex)' == 'True'" />	
-
   <CopyResource
     ResourceName="MultiDexLoader.java"
     OutputPath="$(MonoAndroidIntermediate)android\src\mono\android\incrementaldeployment\MultiDexLoader.java"
@@ -1972,7 +1970,7 @@ because xbuild doesn't support framework reference assemblies.
 </Target>
 
 <Target Name="_GeneratePackageManagerJava"
-  DependsOnTargets="_GetAddOnPlatformLibraries;_AddStaticResources;_PrepareAssemblies"
+  DependsOnTargets="_GetAddOnPlatformLibraries;_AddStaticResources;$(_AfterAddStaticResources);_PrepareAssemblies"
   Inputs="$(MSBuildAllProjects);@(_ResolvedAssemblies);@(_ResolvedUserAssemblies);$(MSBuildProjectFile);$(_AndroidBuildPropertiesCache)"
   Outputs="$(IntermediateOutputPath)android\src\mono\MonoPackageManager.java">
   <!-- Create java needed for Mono runtime -->
@@ -2106,6 +2104,7 @@ because xbuild doesn't support framework reference assemblies.
 		_GeneratePackageManagerJava;
 		_FindJavaStubFiles;
 		_AddStaticResources;
+		$(_AfterAddStaticResources);
 		_GetMonoPlatformJarPath;
 		$(_OnResolveMonoAndroidSdks);
 		_GetLibraryImports;
@@ -2761,6 +2760,7 @@ because xbuild doesn't support framework reference assemblies.
 	<Delete Files="$(_AndroidLibraryProjectImportsCache)" />
 	<Delete Files="$(_AndroidLibrayProjectAssemblyMapFile)" />
 	<Delete Files="$(IntermediateOutputPath)R.txt" />
+	<Delete Files="$(_AndroidMainDexListFile)" />
 </Target>
 
 <Target Name="_CollectMonoAndroidOutputs" DependsOnTargets="_ValidateAndroidPackageProperties">
