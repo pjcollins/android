@@ -2188,7 +2188,7 @@ because xbuild doesn't support framework reference assemblies.
 </PropertyGroup>
 
 <Target Name="_CompileToDalvikWithDx"
-  DependsOnTargets="$(_CompileToDalvikDependsOnTargets)"
+  DependsOnTargets="$(_BeforeCompileToDalvikWithDx);$(_CompileToDalvikDependsOnTargets)"
   Inputs="$(_CompileToDalvikInputs)"
   Outputs="$(IntermediateOutputPath)_dex_stamp">
 
