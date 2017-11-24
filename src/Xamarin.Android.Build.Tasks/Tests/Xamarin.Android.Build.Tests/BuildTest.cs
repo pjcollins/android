@@ -524,6 +524,17 @@ namespace Xamarin.Android.Tests
 		[Test]
 		public void MultiDexCustomMainDexFileList ()
 		{
+			var expected = @"android/support/multidex/ZipUtil$CentralDirectory.class
+android/support/multidex/MultiDexApplication.class
+android/support/multidex/MultiDex$V19.class
+android/support/multidex/MultiDex$V4.class
+android/support/multidex/ZipUtil.class
+android/support/multidex/MultiDexExtractor$1.class
+android/support/multidex/MultiDexExtractor.class
+android/support/multidex/MultiDex$V14.class
+android/support/multidex/MultiDex.class
+MyTest
+";
 			var proj = CreateMultiDexRequiredApplication ();
 			proj.SetProperty ("AndroidEnableMultiDex", "True");
 			proj.OtherBuildItems.Add (new BuildItem ("MultiDexMainDexList", "mymultidex.keep") { TextContent = () => "MyTest", Encoding = Encoding.ASCII });
@@ -531,7 +542,7 @@ namespace Xamarin.Android.Tests
 			var b = CreateApkBuilder ("temp/MultiDexCustomMainDexFileList");
 			b.ThrowOnBuildFailure = false;
 			Assert.IsTrue (b.Build (proj), "build should succeed. Run will fail.");
-			Assert.AreEqual ("MyTest", File.ReadAllText (Path.Combine (Root, b.ProjectDirectory, proj.IntermediateOutputPath, "multidex.keep")), "unexpected multidex.keep content");
+			Assert.AreEqual (expected, File.ReadAllText (Path.Combine (Root, b.ProjectDirectory, proj.IntermediateOutputPath, "multidex.keep")), "unexpected multidex.keep content");
 			b.Clean (proj);
 			b.Dispose ();
 		}
