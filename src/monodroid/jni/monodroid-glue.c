@@ -2496,44 +2496,6 @@ set_world_accessable (const char *path)
 	if (r == -1)
 		log_error (LOG_DEFAULT, "chmod(\"%s\", 0664) failed: %s", path, strerror (errno));
 }
-
-static void
-set_user_executable (const char *path)
-{
-	int r;
-	do
-		r = chmod (path, S_IRUSR | S_IWUSR | S_IXUSR);
-	while (r == -1 && errno == EINTR);
-
-	if (r == -1)
-		log_error (LOG_DEFAULT, "chmod(\"%s\") failed: %s", path, strerror (errno));
-}
-
-static void
-copy_file_to_internal_location(char *to, char *from, char* file)
-{
-	char *from_file = path_combine (from, file);
-
-	if (!file_exists (from_file))
-	{
-		free (from_file);
-		return;
-	}
-
-	log_warn (LOG_DEFAULT, "Copying file %s from external location %s to internal location %s",
-		file, from, to);
-
-	char *to_file = path_combine (to, file);
-	unlink (to_file);
-
-	if (file_copy (to_file, from_file) < 0)
-		log_warn (LOG_DEFAULT, "Copy failed: %s", strerror (errno));
-
-	set_user_executable (to_file);
-
-	free (from_file);
-	free (to_file);
-}
 #else
 static int
 enable_soft_breakpoints (void)
