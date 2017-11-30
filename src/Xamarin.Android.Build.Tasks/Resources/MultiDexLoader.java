@@ -57,7 +57,6 @@ import java.util.Set;
 
 import android.content.*;
 import android.util.Log;
-import android.util.ArrayMap;
 import android.os.Build;
 import dalvik.system.BaseDexClassLoader;
 
