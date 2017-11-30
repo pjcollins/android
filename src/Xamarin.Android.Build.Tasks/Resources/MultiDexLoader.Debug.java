@@ -3,6 +3,7 @@
 //
 
 // Copyright 2015 Xamarin Inc. All rights reserved.
+// Copyright 2017 Microsoft Corporation. All rights reserved.
 
 //
 // Copyright 2014 The Bazel Authors. All rights reserved.

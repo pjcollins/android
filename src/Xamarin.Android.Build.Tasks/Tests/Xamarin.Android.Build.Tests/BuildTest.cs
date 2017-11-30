@@ -542,7 +542,9 @@ MyTest
 			var b = CreateApkBuilder ("temp/MultiDexCustomMainDexFileList");
 			b.ThrowOnBuildFailure = false;
 			Assert.IsTrue (b.Build (proj), "build should succeed. Run will fail.");
-			Assert.AreEqual (expected, File.ReadAllText (Path.Combine (Root, b.ProjectDirectory, proj.IntermediateOutputPath, "multidex.keep")), "unexpected multidex.keep content");
+			var data = File.ReadAllText(Path.Combine(Root, b.ProjectDirectory, proj.IntermediateOutputPath, "multidex.keep"));
+			data = Regex.Replace(data, @"\r\n|\n\r|\n|\r", "\r\n");
+			Assert.AreEqual (expected, data, "unexpected multidex.keep content");
 			b.Clean (proj);
 			b.Dispose ();
 		}
