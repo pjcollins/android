@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)\..\..\src\Mono.Android\Tests\libs\arm64-v8a\libreuse-threads.so" />
-    <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)\..\..\src\Mono.Android\Tests\libs\armeabi\libreuse-threads.so" />
-    <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)\..\..\src\Mono.Android\Tests\libs\armeabi-v7a\libreuse-threads.so" />
-    <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)\..\..\src\Mono.Android\Tests\libs\x86\libreuse-threads.so" />
-    <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)\..\..\src\Mono.Android\Tests\libs\x86_64\libreuse-threads.so" />
+    <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)..\..\src\Mono.Android\Tests\libs\arm64-v8a\libreuse-threads.so" />
+    <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)..\..\src\Mono.Android\Tests\libs\armeabi\libreuse-threads.so" />
+    <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)..\..\src\Mono.Android\Tests\libs\armeabi-v7a\libreuse-threads.so" />
+    <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)..\..\src\Mono.Android\Tests\libs\x86\libreuse-threads.so" />
+    <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)..\..\src\Mono.Android\Tests\libs\x86_64\libreuse-threads.so" />
   </ItemGroup>
   <Import Project="$(MSBuildThisFileDirectory)\..\..\src\Mono.Android\Tests\Mono.Android-Tests.projitems" />
   <Import Project="..\..\build-tools\scripts\UnitTestApks.targets" />
@@ -14,7 +14,7 @@
       DependsOnTargets="AndroidPrepareForBuild"
       Inputs="jni\reuse-threads.c;jni\Android.mk"
       Outputs="@(AndroidNativeLibrary)">
-    <Error Text="Could not locate Android NDK." Condition="!Exists ('$(AndroidNdkDirectory)\ndk-build')" />
-    <Exec Command="&quot;$(AndroidNdkDirectory)\ndk-build&quot;" />
+    <Error Text="Could not locate Android NDK." Condition="!Exists ('$(NdkBuildPath)')" />
+    <Exec Command="&quot;$(NdkBuildPath)&quot;" />
   </Target>
 </Project>

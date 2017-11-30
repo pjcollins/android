@@ -580,9 +580,9 @@ static void
 set_user_executable (const char *path)
 {
 	int r;
-	do
+	do {
 		r = chmod (path, S_IRUSR | S_IWUSR | S_IXUSR);
-	while (r == -1 && errno == EINTR);
+	} while (r == -1 && errno == EINTR);
 
 	if (r == -1)
 		log_error (LOG_DEFAULT, "chmod(\"%s\") failed: %s", path, strerror (errno));

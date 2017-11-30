@@ -347,7 +347,7 @@ namespace Xamarin.Android.Tasks {
 			var providerNames = AddMonoRuntimeProviders (app);
 
 			if (MultiDex)
-				app.Add (CreateMonoRuntimeProvider ("mono.android.MultiDexLoader", null, initOrder: int.MaxValue));
+				app.Add (CreateMonoRuntimeProvider ("mono.android.MultiDexLoader", null, initOrder: ++AppInitOrder));
 				
 			if (Debug) {
 				app.Add (new XComment ("suppress ExportedReceiver"));
@@ -577,7 +577,7 @@ namespace Xamarin.Android.Tasks {
 
 		IList<string> AddMonoRuntimeProviders (XElement app)
 		{
-			app.Add (CreateMonoRuntimeProvider ("mono.MonoRuntimeProvider", null));
+			app.Add (CreateMonoRuntimeProvider ("mono.MonoRuntimeProvider", null, AppInitOrder));
 
 			var providerNames = new List<string> ();
 
@@ -603,7 +603,7 @@ namespace Xamarin.Android.Tasks {
 				case "service":
 					string providerName = "MonoRuntimeProvider_" + procs.Count;
 					providerNames.Add (providerName);
-					app.Add (CreateMonoRuntimeProvider ("mono." + providerName, proc.Value));
+					app.Add (CreateMonoRuntimeProvider ("mono." + providerName, proc.Value, ++AppInitOrder));
 					break;
 				}
 			}
@@ -611,9 +611,9 @@ namespace Xamarin.Android.Tasks {
 			return providerNames;
 		}
 
-		const int AppInitOrder = 2000000000;
+		int AppInitOrder = 2000000000;
 
-		XElement CreateMonoRuntimeProvider (string name, string processName, int initOrder = AppInitOrder)
+		XElement CreateMonoRuntimeProvider (string name, string processName, int initOrder)
 		{
 			return new XElement ("provider",
 						new XAttribute (androidNs + "name", name),
