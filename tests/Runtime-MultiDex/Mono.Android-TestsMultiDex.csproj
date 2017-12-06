@@ -14,7 +14,7 @@
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AssemblyName>Mono.Android-Tests</AssemblyName>
+    <AssemblyName>Mono.Android-TestsMultiDex</AssemblyName>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <AndroidSupportedAbis>armeabi-v7a;x86</AndroidSupportedAbis>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
@@ -68,11 +68,20 @@
     <AndroidResource Include="Resources\xml\XmlReaderResourceParser.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <Import Project="Mono.Android-TestsMultiDex.targets" />
   <ItemGroup>
-    <AndroidNativeLibrary Include="..\..\src\Mono.Android\Test\libs\**\*.so">
-    </AndroidNativeLibrary>
-    <AndroidResource Include="..\..\src\Mono.Android\Test\Resources\**\*.*">
-    </AndroidResource>
+    <ProjectReference Include="..\..\src\Xamarin.Android.Build.Tasks\Xamarin.Android.Build.Tasks.csproj" Condition=" '$(XAIntegratedTests)' == 'True' ">
+      <Name>Xamarin.Android.Build.Tasks</Name>
+      <Project>{3F1F2F50-AF1A-4A5A-BEDB-193372F068D7}</Project>
+      <Private>False</Private>
+      <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Xamarin.Android.NUnitLite\Xamarin.Android.NUnitLite.csproj" Condition=" '$(XAIntegratedTests)' == 'True' ">
+      <Name>Xamarin.Android.NUnitLite</Name>
+      <Project>{4D603AA3-3BFD-43C8-8050-0CD6C2601126}</Project>
+      <Private>False</Private>
+      <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />

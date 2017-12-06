@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mono.Android-Tests", "src\Mono.Android\Test\Mono.Android-Tests.csproj", "{40EAD437-216B-4DF4-8258-3F47E1672C3A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mono.Android-TestsMultiDex", "tests\Runtime-MultiDex\Mono.Android-TestsMultiDex.csproj", "{40EAD437-216B-4DF4-8258-3F47E1672C3A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorld", "samples\HelloWorld\HelloWorld.csproj", "{2305B00D-DE81-4744-B0DA-357835CAFE5A}"
 EndProject
