@@ -4,12 +4,12 @@
     <TestApk Include="$(OutputPath)Mono.Android_TestsMultiDex-Signed.apk">
       <Package>Mono.Android_TestsMultiDex</Package>
       <InstrumentationType>xamarin.android.runtimetests.TestInstrumentation</InstrumentationType>
-      <ResultsPath>$(MSBuildThisFileDirectory)..\..\..\TestResult-Mono.Android_TestsMultiDex.xml</ResultsPath>
-      <TimingDefinitionsFilename>$(MSBuildThisFileDirectory)..\..\..\build-tools\scripts\TimingDefinitions.txt</TimingDefinitionsFilename>
-      <TimingResultsFilename>$(MSBuildThisFileDirectory)..\..\..\TestResult-Mono.Android_TestsMultiDex-times.csv</TimingResultsFilename>
+      <ResultsPath>$(MSBuildThisFileDirectory)..\..\TestResult-Mono.Android_TestsMultiDex.xml</ResultsPath>
+      <TimingDefinitionsFilename>$(MSBuildThisFileDirectory)..\..\build-tools\scripts\TimingDefinitions.txt</TimingDefinitionsFilename>
+      <TimingResultsFilename>$(MSBuildThisFileDirectory)..\..\TestResult-Mono.Android_TestsMultiDex-times.csv</TimingResultsFilename>
       <ApkSizesInputFilename>apk-sizes-$(_MonoAndroidTestPackage)-$(Configuration)$(TestsAotName).txt</ApkSizesInputFilename>
       <ApkSizesDefinitionFilename>$(MSBuildThisFileDirectory)apk-sizes-definitions.txt</ApkSizesDefinitionFilename>
-      <ApkSizesResultsFilename>$(MSBuildThisFileDirectory)..\..\..\TestResult-Mono.Android_TestsMultDex-values.csv</ApkSizesResultsFilename>
+      <ApkSizesResultsFilename>$(MSBuildThisFileDirectory)..\..\TestResult-Mono.Android_TestsMultDex-values.csv</ApkSizesResultsFilename>
     </TestApk>
   </ItemGroup>
 </Project>
