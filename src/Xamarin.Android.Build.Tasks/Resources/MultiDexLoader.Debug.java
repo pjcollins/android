@@ -94,8 +94,8 @@ public class MultiDexLoader extends ContentProvider {
 				nativeLibDir,
 				dexes);
 		}
-		monkeyPatchExistingResources (context, externalResourceFile, getActivities (context, false));
 		super.attachInfo (context, info);
+		monkeyPatchExistingResources (context, externalResourceFile, getActivities (context, false));
 	}
 
 	private String mIncrementalDeploymentDir;
@@ -138,10 +138,12 @@ public class MultiDexLoader extends ContentProvider {
 		File[] dexes = new File (dexDirectory).listFiles ();
 		// It is not illegal state when it was launched to start Seppuku
 		if (dexes == null) {
+			Log.v("MultiDexLoader", "No dexes!");
 			return null;
 		} else {
 			for (File dex : dexes) {
 				if (dex.getName ().endsWith (".dex")) {
+					Log.v("MultiDexLoader", "Adding dex " + dex.getPath ());
 					result.add (dex.getPath ());
 				}
 			}
@@ -284,22 +286,24 @@ public class MultiDexLoader extends ContentProvider {
 			if (activityThread == null) {
 				activityThread = Class.forName ("android.app.ActivityThread");
 			}
-			Method m = activityThread.getMethod ("currentActivityThread", new Class[0]);
+			Method m = activityThread.getMethod ("currentActivityThread");
 			m.setAccessible (true);
-			Object currentActivityThread = m.invoke (activityThread, new Object[0]);
-			Object apk = null;
-			Field mActivityThreadField = null;
-			if ((currentActivityThread == null) && (context != null)) {
+			Object currentActivityThread = m.invoke (null);
+			if (currentActivityThread == null && context != null) {
+				// In older versions of Android (prior to frameworks/base 66a017b63461a22842)
+				// the currentActivityThread was built on thread locals, so we'll need to try
+				// even harder
 				Field mLoadedApk = context.getClass ().getField ("mLoadedApk");
 				mLoadedApk.setAccessible (true);
-				apk = mLoadedApk.get (context);
-				mActivityThreadField = apk.getClass ().getDeclaredField ("mActivityThread");
+				Object apk = mLoadedApk.get (context);
+				Field mActivityThreadField = apk.getClass ().getDeclaredField ("mActivityThread");
 				mActivityThreadField.setAccessible (true);
+				currentActivityThread = mActivityThreadField.get (apk);
 			}
-			return mActivityThreadField.get (apk);
+			return currentActivityThread;
 		} catch (Throwable ignore) {
+			return null;
 		}
-		return null;
 	}
 	
 	// ---
