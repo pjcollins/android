@@ -13,8 +13,8 @@
     <AssemblyName>HelloLibrary</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AndroidApplication>false</AndroidApplication>
-    <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
     <DebugType>portable</DebugType>
+    <TargetFrameworkVersion>$(AndroidFrameworkVersion)</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -68,4 +68,7 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Case_Check.png" />
   </ItemGroup>
+  <PropertyGroup>
+    <TargetFrameworkVersion>$(AndroidFrameworkVersion)</TargetFrameworkVersion>
+  </PropertyGroup>
 </Project>

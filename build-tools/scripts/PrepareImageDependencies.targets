@@ -3,7 +3,6 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
   </PropertyGroup>
   <UsingTask AssemblyFile="..\..\bin\Build$(Configuration)\xa-prep-tasks.dll"   TaskName="Xamarin.Android.BuildTools.PrepTasks.ReplaceFileContents" />
-  <Import Project="..\..\Configuration.props" />
   <Import Project="..\android-toolchain\android-toolchain.projitems" />
   <Import Project="..\dependencies\dependencies.projitems" />
   <Target Name="PrepareImageDependencies">

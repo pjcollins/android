@@ -8,7 +8,6 @@
     <RootNamespace>Xamarin.Android.BuildTools.PrepTasks</RootNamespace>
     <AssemblyName>xa-prep-tasks</AssemblyName>
   </PropertyGroup>
-  <Import Project="..\..\Configuration.props" />
   <Import Project="..\..\build-tools\scripts\MSBuildReferences.projitems" />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

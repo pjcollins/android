@@ -10,7 +10,6 @@
     <OutputPath>..\..\bin\Build$(Configuration)</OutputPath>
   </PropertyGroup>
 
-  <Import Project="..\..\Configuration.props" />
   <Import Project="..\installers\create-installers.targets" />
 
   <PropertyGroup>

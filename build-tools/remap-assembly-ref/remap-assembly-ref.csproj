@@ -8,7 +8,6 @@
     <RootNamespace>remapassemblyref</RootNamespace>
     <AssemblyName>remap-assembly-ref</AssemblyName>
   </PropertyGroup>
-  <Import Project="..\..\Configuration.props" />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <Optimize>false</Optimize>

@@ -84,7 +84,7 @@ After all the issues are fixed, please re-run the bootstrapper.
 
 			HomebrewVersion = brewVersion;
 
-			// This is a hack since we have a chicken-and-egg problem. On mac, Configuration.props uses the
+			// This is a hack since we have a chicken-and-egg problem. On mac, Directory.Build.props uses the
 			// `HostHomebrewPrefix` property which is defined in `Configuration.OperatingSystem.props` but we're here to
 			// *generate* the latter file, so when the bootstrapper is built `HostHomebrewPrefix` is empty and we can't
 			// access mingw utilities. So, we need to cheat here.

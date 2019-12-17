@@ -125,7 +125,7 @@ namespace Xamarin.Android.Prepare
 			GitRunner git = CreateGitRunner (context);
 			IList <GitRunner.BlamePorcelainEntry> blameEntries;
 
-			blameEntries = await git.Blame ("Configuration.props");
+			blameEntries = await git.Blame ("Directory.Build.props");
 			if (blameEntries == null || blameEntries.Count == 0)
 				throw new InvalidOperationException ("Unable to determine the last version change commit");
 

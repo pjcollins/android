@@ -4,7 +4,6 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <_TopDir>$(MSBuildThisFileDirectory)..\..</_TopDir>
   </PropertyGroup>
-  <Import Project="$(_TopDir)\Configuration.props" />
   <UsingTask AssemblyFile="$(MSBuildThisFileDirectory)..\..\bin\Build$(Configuration)\xa-prep-tasks.dll" TaskName="Xamarin.Android.BuildTools.PrepTasks.RunParallelTargets" />
   <UsingTask AssemblyFile="$(MSBuildThisFileDirectory)..\..\bin\Build$(Configuration)\xa-prep-tasks.dll" TaskName="Xamarin.Android.BuildTools.PrepTasks.SetEnvironmentVariable" />
   <PropertyGroup>

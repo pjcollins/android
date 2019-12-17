@@ -7,7 +7,6 @@
     <_XAPrepareStandardArgs Condition=" '$(RunningOnCI)' == 'true' ">--no-emoji --run-mode=CI -v:d</_XAPrepareStandardArgs>
     <_XAPrepareStandardArgs Condition=" '$(XA_FORCE_COMPONENT_REFRESH)' == 'true' ">$(_XAPrepareStandardArgs) -refresh</_XAPrepareStandardArgs>
   </PropertyGroup>
-  <Import Project="$(_TopDir)\Configuration.props" />
   <Target Name="_BuildXAPrepare">
     <MSBuild Projects="$(MSBuildThisFileDirectory)..\xaprepare\xaprepare.sln" Targets="Restore;Build" />
   </Target>

@@ -40,14 +40,14 @@ After the solution has built successfully, you can [use your
 build][using-your-build] to build Xamarin.Android application and library
 projects.  Note that by default `Xamarin.Android.sln` only builds support for
 the `$(TargetFrameworkVersion)` specified in the `$(AndroidFrameworkVersion)`
-property of the [`Configuration.props`][configprops-master] file (`v10.0` when
+property of the [`Directory.Build.props`][configprops-master] file (`v10.0` when
 this guide was last updated), so you will need to ensure that your application
 and library projects are configured to use that particular target framework
 version.
 
 [developer-prompt]: https://docs.microsoft.com/dotnet/framework/tools/developer-command-prompt-for-vs
 [using-your-build]: https://github.com/xamarin/xamarin-android/blob/master/Documentation/workflow/UsingYourBuild.md
-[configprops-master]: https://github.com/xamarin/xamarin-android/blob/master/Configuration.props
+[configprops-master]: https://github.com/xamarin/xamarin-android/blob/master/Directory.Build.props
 
 ## Windows Build Notes
 

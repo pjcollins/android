@@ -9,7 +9,6 @@
     <AssemblyName>xaprepare</AssemblyName>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
-  <Import Project="..\..\..\Configuration.props" />
   <Import Project="xaprepare.targets" Condition=" $(MSBuildToolsPath.IndexOf('omnisharp')) &lt; 0 " />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>

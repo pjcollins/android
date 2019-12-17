@@ -6,7 +6,6 @@
     <ProjectGuid>{D93CAC27-3893-42A3-99F1-2BCA72E186F4}</ProjectGuid>
     <CopyBuildOutputToOutputDirectory>False</CopyBuildOutputToOutputDirectory>
   </PropertyGroup>
-  <Import Project="..\..\Configuration.props" />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>..\..\bin\Debug</OutputPath>
   </PropertyGroup>

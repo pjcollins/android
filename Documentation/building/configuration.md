@@ -13,8 +13,8 @@ the Android SDK and NDK.
 To modify the build process, copy
 [`Configuration.Override.props.in`](../../Configuration.Override.props.in)
 to `Configuration.Override.props`, and edit the file as appropriate.
-`Configuration.Override.props` is `<Import/>`ed by `Configuration.props`
-and will override any default values specified in `Configuration.props`.
+`Configuration.Override.props` is `<Import/>`ed by `Directory.Build.props`
+and will override any default values specified in `Directory.Build.props`.
 
 Overridable MSBuild properties include:
 

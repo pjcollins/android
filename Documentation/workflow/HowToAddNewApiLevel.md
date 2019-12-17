@@ -4,7 +4,7 @@
 
 ## Quick Android Q API support workflow logs.
 
-- Make changes to Configuration.props
+- Make changes to Directory.Build.props
 - Add android-toolchain projitems
 - Run `make prepare` and `make` to first download platform-Q under `~/android-toolchain`
 - Generate android-Q.params.txt
@@ -13,7 +13,7 @@
   - run `nuget restore`, `make`, and `./generate.sh`. Take some rest (it takes a while).
   - copy `android-*.params.txt` to `{xamarin-android topdir}/src/Mono.Android/Profiles/`.
   - In `src/Mono.Android/Profiles/`, renamed `android-Q.params.txt` to `android-29.params.txt` as the later builds expect that.
-  - Make changes to `Configuration.props`, create `Configuration.Override.props` to set AndroidApiLevel etc.
+  - Make changes to `Directory.Build.props`, create `Configuration.Override.props` to set AndroidApiLevel etc.
   - Make other changes to e.g. `build-tools/scripts/BuildEverything.mk`, `src/Mono.Android/Mono.Android.projitems`.
   - run `make` on xamarin-android topdir. It results in various errors.
   - Fix builds by making changes to `src/Mono.Android/metadata` and sources under `src/Mono.Android`.
@@ -60,7 +60,7 @@ You might be forced to fix and/or add new features to Java source parsers. (You 
 
 Once api-P.params.txt is successfully generated, then copy it to `src/Mono.Android/Profiles`.
 
-3) Make changes to Configuration.props, android-toolchain.projitems, BuildEverything.mk etc.
+3) Make changes to Directory.Build.props, android-toolchain.projitems, BuildEverything.mk etc.
 
 There are many configuration files that holds API definitions. Since the build system is an assorted hacks that don't care consistency, definitions are everywhere. Check the commit mentioned above and edit those files.
 

@@ -18,14 +18,14 @@ The folloing checklist covers what you need to do.  Note, if you know the system
 ### Update system mono
 
 The `$(MonoRequiredMinimumVersion)` and `$(MonoRequiredMaximumVersion)` values
-within [`Configuration.props`](../../Configuration.props)
+within [`Directory.Build.props`](../../Directory.Build.props)
 should be updated to correspond to the version number used in the mono submodule.
 
 These version numbers can be found in
 [mono's `configure.ac`](https://github.com/mono/mono/blob/master/configure.ac)
 in the `AC_INIT()` statement.
 
-An example within Configuration.props:
+An example within Directory.Build.props:
 
 `<MonoRequiredMinimumVersion Condition=" '$(MonoRequiredMinimumVersion)' == '' ">6.8.0</MonoRequiredMinimumVersion>`
 

@@ -5,7 +5,6 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{2CF172E5-BDAE-4ABA-8BC8-08040ED3E77A}</ProjectGuid>
   </PropertyGroup>
-  <Import Project="..\..\Configuration.props" />
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <OutputPath>..\..\bin\Debug\</OutputPath>
   </PropertyGroup>

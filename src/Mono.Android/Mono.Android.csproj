@@ -12,7 +12,6 @@
     <AssemblyOriginatorKeyFile>..\..\product.snk</AssemblyOriginatorKeyFile>
     <NoWarn>0618;0809;0108;0114</NoWarn>
   </PropertyGroup>
-  <Import Project="..\..\Configuration.props" />
   <PropertyGroup>
     <TargetFrameworkIdentifier>MonoAndroid</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
