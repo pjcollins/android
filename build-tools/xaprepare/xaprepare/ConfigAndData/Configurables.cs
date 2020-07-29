@@ -19,9 +19,10 @@ namespace Xamarin.Android.Prepare
 		const string JetBrainsOpenJDK11Release = "944.14";
 		static readonly string JetBrainsOpenJDK11DownloadVersion = JetBrainsOpenJDK11Version.Replace ('.', '_');
 
-		const string JetBrainsOpenJDK8Version = "8.202";
+		const string JetBrainsOpenJDK8Revision = "202";
+		const string JetBrainsOpenJDK8Version = "1.8.0." + JetBrainsOpenJDK8Revision;
 		const string JetBrainsOpenJDK8Release = "1483.37";
-		static readonly string JetBrainsOpenJDK8DownloadVersion = JetBrainsOpenJDK8Version.Replace ('.', 'u');
+		static readonly string JetBrainsOpenJDK8DownloadVersion = "8u" + JetBrainsOpenJDK8Revision;
 
 		const string CorrettoDistVersion = "8.242.08.1";
 		const string CorrettoUrlPathVersion = CorrettoDistVersion;

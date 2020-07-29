@@ -173,7 +173,7 @@ namespace Xamarin.Android.Prepare
 					continue;
 				}
 
-				cv = line.Substring (line.IndexOf ('=') + 1).Trim ('"');
+				cv = line.Substring (line.IndexOf ('=') + 1).Trim ('"').Replace ('_', '.');
 				break;
 			}
 
