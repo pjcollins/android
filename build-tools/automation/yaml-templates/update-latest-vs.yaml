@@ -1,0 +1,11 @@
+steps:
+- powershell: |
+    $vsWhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+    & "$vsWhere" -all -prerelease -latest | Out-Default
+    $vsPath = & "$vsWhere" -all -prerelease -latest -property installationPath
+    Write-Host "Attempting to update VS instance:" $vsPath
+    $vsInstaller = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vs_installer.exe"
+    & "$vsInstaller" update --installPath $vsPath --quiet --norestart | Out-Default
+    Write-Host "vs_installer.exe update attempt complete"
+  displayName: update latest visual studio installation
+  condition: and(succeeded(), eq(variables['agent.os'], 'Windows_NT'))

@@ -23,6 +23,8 @@ jobs:
 
     - template: clean.yaml
 
+    - template: update-latest-vs.yaml
+
     - template: environment/win/vs-msbuild.v1.yml@yaml   # Display (in log) VS installation(s) including installation status with associated MSBuild location(s)
 
     - template: setup-test-environment.yaml
