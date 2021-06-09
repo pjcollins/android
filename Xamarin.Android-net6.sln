@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29411.108
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Android.Sdk.ILLink", "src\Microsoft.Android.Sdk.ILLink\Microsoft.Android.Sdk.ILLink.csproj", "{71FE54FA-0BF5-48EF-ACAA-17557B28C9F4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mono.Android", "src\Mono.Android\Mono.Android.csproj", "{66CF299A-CE95-4131-BCD8-DB66E30C4BF7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mono.Android.Export", "src\Mono.Android.Export\Mono.Android.Export.csproj", "{B8105878-D423-4159-A3E7-028298281EC6}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		src\Xamarin.Android.NamingCustomAttributes\Xamarin.Android.NamingCustomAttributes.projitems*{66cf299a-ce95-4131-bcd8-db66e30c4bf7}*SharedItemsImports = 5
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{71FE54FA-0BF5-48EF-ACAA-17557B28C9F4}.Debug|AnyCPU.ActiveCfg = Debug|Any CPU
+		{71FE54FA-0BF5-48EF-ACAA-17557B28C9F4}.Debug|AnyCPU.Build.0 = Debug|Any CPU
+		{71FE54FA-0BF5-48EF-ACAA-17557B28C9F4}.Release|AnyCPU.ActiveCfg = Release|Any CPU
+		{71FE54FA-0BF5-48EF-ACAA-17557B28C9F4}.Release|AnyCPU.Build.0 = Release|Any CPU
+		{66CF299A-CE95-4131-BCD8-DB66E30C4BF7}.Debug|AnyCPU.ActiveCfg = Debug|Any CPU
+		{66CF299A-CE95-4131-BCD8-DB66E30C4BF7}.Debug|AnyCPU.Build.0 = Debug|Any CPU
+		{66CF299A-CE95-4131-BCD8-DB66E30C4BF7}.Release|AnyCPU.ActiveCfg = Release|Any CPU
+		{66CF299A-CE95-4131-BCD8-DB66E30C4BF7}.Release|AnyCPU.Build.0 = Release|Any CPU
+		{B8105878-D423-4159-A3E7-028298281EC6}.Debug|AnyCPU.ActiveCfg = Debug|Any CPU
+		{B8105878-D423-4159-A3E7-028298281EC6}.Debug|AnyCPU.Build.0 = Debug|Any CPU
+		{B8105878-D423-4159-A3E7-028298281EC6}.Release|AnyCPU.ActiveCfg = Release|Any CPU
+		{B8105878-D423-4159-A3E7-028298281EC6}.Release|AnyCPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {368B5B8B-7CA0-4D02-B36A-95CF69A960CD}
+	EndGlobalSection
+EndGlobal

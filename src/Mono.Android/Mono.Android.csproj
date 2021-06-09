@@ -5,7 +5,8 @@
   <Import Project="..\..\Configuration.props" />
 
   <PropertyGroup>
-    <TargetFrameworks>monoandroid10;net6.0</TargetFrameworks>
+    <TargetFramework Condition=" '$(BuildingForNetCore)' != 'true' ">monoandroid10</TargetFramework>
+    <TargetFramework Condition=" '$(BuildingForNetCore)' == 'true' ">net6.0</TargetFramework>
     <RootNamespace>Android</RootNamespace>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\product.snk</AssemblyOriginatorKeyFile>

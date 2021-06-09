@@ -4,8 +4,8 @@
 
   <PropertyGroup>
     <!-- Only build for net6.0 for $(AndroidLatestStableFrameworkVersion) -->
-    <TargetFrameworks Condition=" '$(AndroidFrameworkVersion)' != '$(AndroidLatestStableFrameworkVersion)' ">monoandroid10</TargetFrameworks>
-    <TargetFrameworks Condition=" '$(AndroidFrameworkVersion)' == '$(AndroidLatestStableFrameworkVersion)' ">monoandroid10;net6.0</TargetFrameworks>
+    <TargetFramework Condition=" '$(BuildingForNetCore)' != 'true' ">monoandroid10</TargetFramework>
+    <TargetFramework Condition=" '$(BuildingForNetCore)' == 'true' and '$(AndroidFrameworkVersion)' == '$(AndroidLatestStableFrameworkVersion)' ">net6.0</TargetFramework>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\product.snk</AssemblyOriginatorKeyFile>
     <NoStdLib>true</NoStdLib>
