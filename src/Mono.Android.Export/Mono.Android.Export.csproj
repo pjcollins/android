@@ -62,4 +62,35 @@
     <BuildDependsOn></BuildDependsOn>
   </PropertyGroup>
 
+  <!-- Copy .NET ref/runtime assemblies to bin/$(Configuration)/dotnet/packs folder -->
+  <PropertyGroup Condition=" '$(TargetFramework)' != 'monoandroid10' And '$(AndroidApiLevel)' &gt;= '$(AndroidLatestStableApiLevel)' ">
+    <BuildDependsOn>
+      $(BuildDependsOn);
+      _CopyToRefAndRuntimePackDirectories;
+    </BuildDependsOn>
+  </PropertyGroup>
+
+  <Target Name="_CopyToRefAndRuntimePackDirectories" >
+    <Copy
+        SourceFiles="$(OutputPath)\ref\Mono.Android.Export.dll"
+        DestinationFolder="$(_MonoAndroidNETRefOutputDir)$(TargetFramework)"
+        SkipUnchangedFiles="True"
+    />
+    <Copy
+        SourceFiles="$(OutputPath)\Mono.Android.Export.dll"
+        DestinationFolder="$(DotNetPreviewPath)packs\Microsoft.Android.Runtime.$(MajorPackVersion).android-arm\$(_LocalAndroidPackVersion)\runtimes\android-arm\lib\"
+        SkipUnchangedFiles="True"
+    />
+    <Copy
+        SourceFiles="$(OutputPath)\Mono.Android.Export.dll"
+        DestinationFolder="$(DotNetPreviewPath)packs\Microsoft.Android.Runtime.$(MajorPackVersion).android-arm64\$(_LocalAndroidPackVersion)\runtimes\android-arm64\lib\"
+        SkipUnchangedFiles="True"
+    />
+    <Copy
+        SourceFiles="$(OutputPath)\Mono.Android.Export.dll"
+        DestinationFolder="$(DotNetPreviewPath)packs\Microsoft.Android.Runtime.$(MajorPackVersion).android-x86\$(_LocalAndroidPackVersion)\runtimes\android-x86\lib\"
+        SkipUnchangedFiles="True"
+    />
+  </Target>
+
 </Project>
