@@ -6,8 +6,8 @@ ifeq ($(PREPARE_CI_PR)$(PREPARE_CI),00)
 else
 	$(MAKE) prepare
 endif
-ifneq ("$(wildcard $(topdir)/external/monodroid/Makefile)","")
-	cd $(topdir)/external/monodroid && ./configure --with-xamarin-android='$(topdir)'
+ifneq ("$(wildcard $(topdir)/external/androidtools/monodroid/monodroid.proj)","")
+	cd $(topdir)/external/androidtools/monodroid && git -c submodule.external/xamarin-android.update=none submodule update --init --recursive
 	$(call DOTNET_BINLOG,build-commercial) $(SOLUTION) -t:BuildExternal
 endif
 	$(MAKE) leeroy
