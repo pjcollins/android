@@ -16,9 +16,25 @@ Copyright (C) 2018 Xamarin. All rights reserved.
 
   <UsingTask TaskName="Xamarin.Android.Tasks.D8" AssemblyFile="Xamarin.Android.Build.Tasks.dll" />
   <UsingTask TaskName="Xamarin.Android.Tasks.R8" AssemblyFile="Xamarin.Android.Build.Tasks.dll" />
+  <UsingTask TaskName="Xamarin.Android.Tasks.D8JarMerge" AssemblyFile="Xamarin.Android.Build.Tasks.dll" />
+
+
+  <Target Name="_CalculateJavaLibrariesToCompileForAppHash"
+        Outputs="%(_JavaLibrariesToCompileForApp.Identity)" >
+    <Hash
+        ItemsToHash="%(_JavaLibrariesToCompileForApp.Identity)"
+        IgnoreCase="true">
+      <Output TaskParameter="HashResult" PropertyName="_JavaLibrariesToCompileForAppHash" />
+    </Hash>
+    <ItemGroup>
+      <_JavaLibrariesToCompileForApp>
+        <Hash>$([System.String]::Copy($(_JavaLibrariesToCompileForAppHash)).Substring(0, 5))</Hash>
+      </_JavaLibrariesToCompileForApp>
+    </ItemGroup>
+  </Target>
 
   <Target Name="_CompileToDalvik"
-      DependsOnTargets="$(_BeforeCompileToDalvik);$(_CompileToDalvikDependsOnTargets)"
+      DependsOnTargets="$(_BeforeCompileToDalvik);$(_CompileToDalvikDependsOnTargets);_CalculateJavaLibrariesToCompileForAppHash"
       Inputs="$(_CompileToDalvikInputs)"
       Outputs="$(_AndroidStampDirectory)_CompileToDalvik.stamp">
 
@@ -53,6 +69,23 @@ Copyright (C) 2018 Xamarin. All rights reserved.
       <_AndroidR8MapDiagnostics Condition=" '$(AndroidR8IgnoreWarnings)' == 'true' " Include="warning" To="info" />
     </ItemGroup>
 
+    <UnzipToFolder Sources="@(_JavaLibrariesToCompileForApp)" DestinationDirectories="@(_JavaLibrariesToCompileForApp->'$(IntermediateOutputPath)jlmerge-tmp\%(Hash)')" />
+
+    <MakeDir
+        Directories="$(IntermediateOutputPath)jlmerge"
+    />
+
+    <D8JarMerge
+        ToolPath="$(JarsignerToolPath)"
+        InputDirectory="$(IntermediateOutputPath)jlmerge-tmp"
+        OutputJar="$(IntermediateOutputPath)jlmerge\jlmerge.jar" >
+    </D8JarMerge>
+
+    <ItemGroup>
+      <!--_MergedJarToEmbed Include="@(_JavaLibrariesToCompileForApp)" /-->
+      <_MergedJarToEmbed Include="$(IntermediateOutputPath)jlmerge\jlmerge.jar" />
+    </ItemGroup>
+
     <R8
         Condition=" '$(_UseR8)' == 'True' "
         ToolPath="$(JavaToolPath)"
@@ -64,7 +97,7 @@ Copyright (C) 2018 Xamarin. All rights reserved.
         Debug="$(AndroidIncludeDebugSymbols)"
         JavaPlatformJarPath="$(JavaPlatformJarPath)"
         ClassesZip="$(_AndroidIntermediateClassesZip)"
-        JavaLibrariesToEmbed="@(_JavaLibrariesToCompileForApp);"
+        JavaLibrariesToEmbed="@(_MergedJarToEmbed)"
         JavaLibrariesToReference="@(AndroidExternalJavaLibrary)"
         EnableDesugar="$(AndroidEnableDesugar)"
         AndroidSdkBuildToolsPath="$(AndroidSdkBuildToolsPath)"
@@ -95,7 +128,7 @@ Copyright (C) 2018 Xamarin. All rights reserved.
         Debug="$(AndroidIncludeDebugSymbols)"
         JavaPlatformJarPath="$(JavaPlatformJarPath)"
         ClassesZip="$(_AndroidIntermediateClassesZip)"
-        JavaLibrariesToEmbed="@(_JavaLibrariesToCompileForApp)"
+        JavaLibrariesToEmbed="@(_MergedJarToEmbed)"
         AlternativeJarLibrariesToEmbed="@(_AlternativeJarForAppD8)"
         JavaLibrariesToReference="@(AndroidExternalJavaLibrary)"
         EnableDesugar="$(AndroidEnableDesugar)"
